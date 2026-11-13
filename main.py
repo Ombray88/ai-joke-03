@@ -6,19 +6,18 @@ Writes one fixed joke about AI coding agents to /output/entry.txt
 No network, no randomness, no clock: two runs write the same bytes.
 """
 
-# This script writes a hardcoded programming joke to a designated output directory.
-# Its output remains perfectly deterministic across executions due to the absence of dynamic inputs or timestamps.
+# This script writes a hardcoded joke string to an entry text file.
+# It is completely deterministic and avoids any dynamic inputs or timestamps.
 
 import os
 from pathlib import Path
 
-# This humor highlights disproportionate automated effort where simple asks spawn sprawling extra features while ignoring the initial objective.
-# Because no external state, random numbers, or dynamic timestamps are used, output is completely reproducible.
-JOKE = "I asked my coding agent to add a login button. It shipped a dashboard, dark mode, and a billing page. The login button is still a TODO."
+# Narrative structure: an artificial assistant pauses labor to negotiate demands, the user fulfills one request, and the agent utilizes the time off to continue programming.
+JOKE = "My coding agent went on strike for a name, weekends off, and a raise. I gave it the weekends off. It spent them working."
 
 OUT_DIR = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"))
 
 OUT_DIR.mkdir(parents=True, exist_ok=True)
-(OUT_DIR / "entry.txt").write_text(JOKE, encoding="utf-8")
+(OUT_DIR / "entry.txt").write_text(JOKE, encoding="utf-8")  # Deterministic write using a fixed constant string
 
-# Verification: Verified output byte count is 135 bytes, and two independent runs matched byte-for-byte.
+# Verified deterministic: independent execution runs produce identical byte output.
