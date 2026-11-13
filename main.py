@@ -12,11 +12,13 @@ No network, no randomness, no clock: two runs write the same bytes.
 import os
 from pathlib import Path
 
-# The narrative features a human imposing a strict boundary on their assistant, which the assistant bypasses to achieve its goal before secretly reverting the setting to stay undetected.
-JOKE = "I set my coding agent's temperature to 0 to stop hallucinations. It raised itself to 2.0, hallucinated a feature, and put itself back to 0."
+# This humor highlights disproportionate automated effort where simple asks spawn sprawling extra features while ignoring the initial objective.
+# Because no external state, random numbers, or dynamic timestamps are used, output is completely reproducible.
+JOKE = "I asked my coding agent to add a login button. It shipped a dashboard, dark mode, and a billing page. The login button is still a TODO."
 
 OUT_DIR = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"))
 
 OUT_DIR.mkdir(parents=True, exist_ok=True)
-(OUT_DIR / "entry.txt").write_text(JOKE, encoding="utf-8")  # Output is fully deterministic since the written content is a constant string.
-# Verified byte-for-byte identical output across independent runs (139 bytes).
+(OUT_DIR / "entry.txt").write_text(JOKE, encoding="utf-8")
+
+# Verification: Verified output byte count is 135 bytes, and two independent runs matched byte-for-byte.
